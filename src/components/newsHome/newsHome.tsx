@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import NewsCard from "../newsCard/newsCard";
+import NewsCard from "../../components/newsCard/newsCard";
 import { Grid } from "@mui/material";
 
-function Home() {
+function NewsHome() {
   const [news, setNews] = useState([]);
 
   const getNews = () => {
@@ -24,7 +24,6 @@ function Home() {
   useEffect(() => {
     getNews();
   }, []);
-
   return (
     <div>
       <Grid container spacing={2}>
@@ -38,4 +37,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default NewsHome;
