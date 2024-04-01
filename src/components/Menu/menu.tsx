@@ -1,16 +1,6 @@
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Icon,
-  IconButton,
-  Menu as MuiMenu,
-  MenuItem,
-} from "@mui/material";
+import { AppBar, Toolbar, Typography, Button, Icon } from "@mui/material";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
-import MenuIcon from "@mui/icons-material/Menu";
 
 interface MenuProps {
   active: number;
@@ -26,58 +16,14 @@ const Menu: React.FC<MenuProps> = ({ active, setActive, setCategory }) => {
     { id: 4, name: "Technology", value: "technology" },
   ];
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   function onClick(id: number, value: string) {
     setActive(id);
     setCategory(value);
-    handleClose();
   }
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "grey" }}>
       <Toolbar>
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          onClick={handleClick}
-          sx={{ mr: 2 }}
-        >
-          <MenuIcon />
-        </IconButton>
-        <MuiMenu
-          id="menu-appbar"
-          anchorEl={anchorEl}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          keepMounted
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          {links.map((link) => (
-            <MenuItem
-              key={link.id}
-              onClick={() => onClick(link.id, link.value)}
-            >
-              {link.name}
-            </MenuItem>
-          ))}
-        </MuiMenu>
         <Icon
           component={NewspaperIcon}
           sx={{ color: "white", marginRight: 1 }}
@@ -87,8 +33,24 @@ const Menu: React.FC<MenuProps> = ({ active, setActive, setCategory }) => {
           component="div"
           sx={{ flexGrow: 1, color: "white" }}
         >
-          The Daily News
+          News App
         </Typography>
+        <div>
+          {links.map((link) => (
+            <Button
+              key={link.id}
+              color="inherit"
+              onClick={() => onClick(link.id, link.value)}
+              sx={{
+                fontWeight: active === link.id ? "bold" : "normal",
+                color: "white",
+                textTransform: "none",
+              }}
+            >
+              {link.name}
+            </Button>
+          ))}
+        </div>
       </Toolbar>
     </AppBar>
   );
