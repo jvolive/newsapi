@@ -33,7 +33,7 @@ const Menu: React.FC<MenuProps> = ({ active, setActive, setCategory }) => {
           component="div"
           sx={{ flexGrow: 1, color: "white" }}
         >
-          News App
+          The Daily News
         </Typography>
         <div>
           {links.map((link) => (
