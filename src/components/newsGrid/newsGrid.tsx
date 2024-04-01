@@ -28,11 +28,7 @@ const NewsGrid: React.FC<NewsGridProps> = ({ items }) => {
           </Card>
         </Grid>
       ))}
-      {items.length === 0 && (
-        <Grid item xs={12}>
-          <Typography variant="body1">No news available</Typography>
-        </Grid>
-      )}
+      {items.length === 0 && <Grid item xs={12}></Grid>}
     </Grid>
   );
 };
